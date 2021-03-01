@@ -1,6 +1,17 @@
 {% extends 'base.html'%}
 
 {% block content %}
-    <p>this is my block content</p>
+    <h4>Hello {{ customer_name }} </h4>
+    <h4>Your username is {{ customer_name }} </h4>
 
-{%end block content%}
+    <p>this is my block content</p>
+    <ul> 
+        {% for key, item in items.items() %}
+                {% if item == "Bread" %}
+                    <li>{{ item }} - {{ key }}</li>
+                {% else %}
+                    <li>{{ key }} - {{ item }}</li>
+                {% endif%}
+            {% endfor %}
+    </ul>
+{% endblock content %}
