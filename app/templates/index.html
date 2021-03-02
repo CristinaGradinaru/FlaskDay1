@@ -1,17 +1,10 @@
 {% extends 'base.html'%}
 
 {% block content %}
+<div class="banner">
+    <h1 class="header-text">Welcome to the Kekambas Blog</h1>
+</div>
     <h4>Hello {{ customer_name }} </h4>
-    <h4>Your username is {{ customer_name }} </h4>
+    <h4>Your username is {{ customer_username }} </h4>
 
-    <p>this is my block content</p>
-    <ul> 
-        {% for key, item in items.items() %}
-                {% if item == "Bread" %}
-                    <li>{{ item }} - {{ key }}</li>
-                {% else %}
-                    <li>{{ key }} - {{ item }}</li>
-                {% endif%}
-            {% endfor %}
-    </ul>
 {% endblock content %}

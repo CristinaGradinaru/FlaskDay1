@@ -1,5 +1,6 @@
 from app import app
-from flask import render_template
+from flask import render_template, request
+from app.forms import UserInfoForm, PostForm
 
 @app.route('/')
 @app.route('/index')
@@ -8,17 +9,27 @@ def hello_world():
         'title': 'Kekembas Blog | HOME',
         'customer_name': 'Cristina',
         'customer_username': 'cgradinaru',
-        'items': {
-            1: 'ice cream',
-            2: 'lemons',
-            3: 'cereal',
-            4: 'bread',
-            5: 'apples'
-        }
     }
     return render_template('index.html', **context)
 
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
     title = 'Kekambas Blog | REGISTER'
-    return render_template('register.html', title = title)
+    form = UserInfoForm()
+    if request.method == 'POST' and form.validate():
+        username= form.username.data
+        email= form.email.data
+        password= form.password.data
+        print(username, email, password)
+        print('Welcome aboard!')
+    return render_template('register.html', title = title, form=form)
+
+@app.route('/createpost', methods = ['GET', 'POST'])
+def createposts():
+    post = PostForm()
+    title = 'Kekembas Blog | Create Post'
+    if request.method =='POST' and post.validate():
+        post_title = post.title.data
+        content = post.content.data
+        print(post_title, content)
+    return render_template('create_post.html', post=post, title=title)

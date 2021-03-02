@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<h3> Create A Post:</h3>
+
+<form action="" method = 'POST'>
+    {{ post.hidden_tag() }}
+    <div class="form-group">
+        <fieldset>
+            {{post.title.label}}
+            {{post.title(class='form-control', placeholder = 'enter post title')}}
+        </fieldset>
+        <fieldset>
+            {{post.content.label}}
+            {{post.content(class='form-control', placeholder = 'enter content')}}
+        </fieldset>
+
+        {{post.submit(class='btn btn-success')}}
+    </div>
+
+</form>
+
+{% endblock content %}
