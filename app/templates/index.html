@@ -4,7 +4,16 @@
 <div class="banner">
     <h1 class="header-text">Welcome to the Kekambas Blog</h1>
 </div>
-    <h4>Hello {{ customer_name }} </h4>
-    <h4>Your username is {{ customer_username }} </h4>
+{%if current_user.is_authenticated %}
+    <h4>Hello {{ current_user.username}} </h4>
+{% else %}
+    <h4> Hello, please register <a href="{{url_for('register')}}">HERE</a></h4>
+{% endif %}
 
+{% for p in posts %}
+<h3> {{ p.title }}</h3>
+<h6> by: {{ p.author.username }}</h6>
+<p>{{ p.content }}</p>
+<hr>
+{% endfor %}
 {% endblock content %}
